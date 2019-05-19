@@ -1,0 +1,13 @@
+
+import SQLServerSetup as sql
+
+Srv = 'server name'
+Db = 'database name'
+shm = 'schema name'
+qry = "select * from ...."
+
+sqlcnn = sql.SQL(Srv,Db,shm, qry)
+
+dt = sqlcnn.fetch
+
+print(dt[0])
