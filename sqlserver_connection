@@ -2,7 +2,7 @@
 
 class SQL:
     
-    def __init__(self, Srv, Db, shm):
+    def __init__(self, Srv, Db, shm, qry):
        
        import pyodbc
         
@@ -11,4 +11,19 @@ class SQL:
                               'Database=' + str(Db) + ';'
                               'Trusted_Connection=yes;')
             
-       self.cursor = conn.cursor()
+       cur = conn.cursor()
+       
+       result = cur.execute(qry)
+       
+       fetchType = input("Fetch All or One? - Use .fetch: ")
+       
+       if fetchType.upper() == 'ALL':
+           self.fetch = result.fetchall()
+       elif fetchType.upper() == 'ONE':
+           self.fetch = result.fetchone()
+           
+       print(self.fetch)
+
+    def __repr__(self):
+       
+       return '{self.fetch}'
