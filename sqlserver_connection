@@ -1,0 +1,17 @@
+#SQL Server Connection Setup
+
+class SQL:
+    
+    def __init__(self, Srv, Db, shm):
+       self.Srv = Srv
+       self.Db = Db
+       self.shm = shm
+       
+       import pyodbc
+        
+       self.conn = pyodbc.connect('Driver={SQL Server};'
+                              'Server=' + str(Srv) + ';'
+                              'Database=' + str(Db) + ';'
+                              'Trusted_Connection=yes;')
+            
+       self.cursor = self.conn.cursor()
